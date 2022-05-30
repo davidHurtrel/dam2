@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}paiement refusé{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Paiement refusé</h1>
+                <p>La paiement a été refusé. Merci de réessayer ultérieurement.</p>
+                <p class="text-center"><a href="{{ path('cart_index') }}">retourner au panier</a></p>
+                <p class="text-center"><a href="{{ path('home') }}">retourner à l'accueil</a></p>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

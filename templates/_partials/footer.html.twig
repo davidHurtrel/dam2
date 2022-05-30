@@ -1,0 +1,31 @@
+<div class="container-fluid bg-dark text-light">
+    <div class="row">
+        <div class="col-4 p-5 text-center">
+            <h3>LIENS UTILES</h3>
+            <div class="dropdown-divider bg-light m-3"></div>
+            <ul>
+                <li><a href="#main-nav">Haut de page</a></li>
+                <li><a href="#">Produits</a></li>
+                <li><a href="#">Panier</a></li>
+                <li><a href="#">CGU / CGV</a></li>
+                <li><a href="#">Mentions légales</a></li>
+            </ul>
+        </div>
+        <div class="col-4 p-5 d-flex align-items-center">
+            <img src="" alt="logo JDS" class="w-100">
+        </div>
+        <div class="col-4 p-5 text-center">
+            <h3>CONTACT</h3>
+            <div class="dropdown-divider bg-light m-3"></div>
+            <p>{{ contact_name }}</p>
+            <p>{{ contact_address }}</p>
+            <p>{{ contact_zip ~ ' ' ~ contact_city }}</p>
+            <p>{{ contact_phone }}9</p>
+            <p>{{ contact_email }}</p>
+            <p><a href="{{ path('contact') }}">formulaire de contact</a></p>
+        </div>
+        <div class="col-12">
+            <p class="text-center pt-3">Copyright © 2022 - JDS</p>
+        </div>
+    </div>
+</div>

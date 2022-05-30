@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}paiement accepté{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">Paiement accepté</h1>
+                <p>Le paiement a été accepté et nous vous en remercions.</p>
+                <p class="text-center"><a href="{{ path('home') }}">retourner à l'accueil</a></p>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

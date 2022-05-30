@@ -1,0 +1,10 @@
+<h1>JDS - demande de contact - {{ subject }}</h1>
+
+<h2>Contact :</h2>
+<ul>
+    <li>nom : {{ firstName|capitalize ~ ' ' ~ lastName|upper }}</li>
+    <li>email : {{ emailAddress }}</li>
+</ul>
+
+<h2>Message</h2>
+<p>{{ message|nl2br }}</p>

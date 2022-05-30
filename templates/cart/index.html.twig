@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}panier{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="my-5 text-center">Panier</h1>
+                <h2>Votre panier</h2>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-12">
+                {% if cart is not empty %}
+                    <table class="table">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Désignation</th>
+                                <th>Prix unitaire</th>
+                                <th>Quantité</th>
+                                <th>Sous-total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for line in cart %}
+                                <tr>
+                                    <td>{{ line.product.name }} (<a href="{{ path('cart_delete', {id: line.product.id}) }}" class="text-danger text-small">supprimer</a>)</td>
+                                    <td class="text-end">{{ line.product.price|number_format(2, ',', ' ') }} €</td>
+                                    <td class="text-center">
+                                        <a href="{{ path('cart_remove', {id: line.product.id}) }}"><i class="bi bi-dash-square-fill text-danger me-1"></i></a>
+                                        {{ line.quantity }}
+                                        <a href="{{ path('cart_add', {id: line.product.id}) }}"><i class="bi bi-plus-square-fill text-success ms-1"></i></a>
+                                    </td>
+                                    <td class="text-end">{{ (line.product.price * line.quantity)|number_format(2, ',', ' ') }} €</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="3">Total :</th>
+                                <th class="text-end">{{ total|number_format(2, ',', ' ') }} €</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                {% else %}
+                    <p class="text-center my-5">Votre panier est vide : <a href="{{ path('product_index') }}">parcourir les produits</a></p>
+                {% endif %}
+            </div>
+        </div>
+        {% if cart is not empty %}
+            <div class="row">
+                <div class="col-12 text-end">
+                    <a href="{{ path('cart_clear') }}" class="btn btn-outline-danger">Vider le panier</a>
+                    <a href="{{ path('payment_index') }}" class="btn btn-success">Valider le panier</a>
+                </div>
+            </div>
+        {% endif %}
+        <div class="row my-5">
+            <div class="col-12">
+                <h2>Derniers produits</h2>
+            </div>
+            {% for product in latestProducts %}
+            <div class="col-3 p-3">
+                <div class="card">
+                    <img src="http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcTazkH9cVN7ra3ynKEmXPA3tVdkraJfbPizFnVQDGTmJUESIStbSW7xzEgIWJfmjYxE" class="card-img-top" alt="image principale {{ product.name }}">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ product.name }}</h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Prix : {{ product.price|number_format(2, ',', ' ') }} €</li>
+                    </ul>
+                    <div class="card-body text-end">
+                        <a href="#" class="card-link btn btn-outline-primary">Détail</a>
+                        <a href="{{ path('cart_add', {id: product.id}) }}" class="card-link btn btn-success">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

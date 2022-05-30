@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}produits{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-12 text-center">
+                <h1>Nos produits</h1>
+            </div>
+        </div>
+        <div class="row my-5">
+            {% for product in products %}
+                <div class="col-4 p-3">
+                    <div class="card">
+                        <img src="http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcTazkH9cVN7ra3ynKEmXPA3tVdkraJfbPizFnVQDGTmJUESIStbSW7xzEgIWJfmjYxE" class="card-img-top" alt="image principale {{ product.name }}">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ product.name }}</h3>
+                            <p class="card-text">{{ product.description|u.truncate(175, '...', false) }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Catégorie : {{ product.category.name }}</li>
+                            <li class="list-group-item">Prix : {{ product.price|number_format(2, ',', ' ') }} €</li>
+                        </ul>
+                        <div class="card-body text-end">
+                            <a href="#" class="card-link btn btn-outline-primary">Voir le détail</a>
+                            <a href="{{ path('cart_add', {id: product.id}) }}" class="card-link btn btn-success">Ajouter au panier</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
